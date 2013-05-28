@@ -11,7 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends Activity
+{
 	private Button loginButton;
 	private TextView loginText;
 	private ImageView imagView;
@@ -20,71 +21,87 @@ public class LoginActivity extends Activity {
 	boolean isShow = false;
 	private Thread thread;
 	private Intent intent;
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-		
-		loginButton = (Button)findViewById(R.id.login_in);
-		loginText = (TextView)findViewById(R.id.logining);
-		
-		isShow = true;	
-		imagView = (ImageView)findViewById(R.id.login_rss);
+
+		loginButton = (Button) findViewById(R.id.login_in);
+		loginText = (TextView) findViewById(R.id.logining);
+
+		isShow = true;
+		imagView = (ImageView) findViewById(R.id.login_rss);
 		imagView.setAlpha(i_alpha);
-				
-		//Ö÷Ò³ÃæÏÔÊ¾
-		mHandler = new Handler() {
+
+		// Ö÷Ò³ÃæÏÔÊ¾
+		mHandler = new Handler()
+		{
 			@Override
-			public void handleMessage(Message msg) {				
+			public void handleMessage(Message msg)
+			{
 				super.handleMessage(msg);
 				imagView.setAlpha(i_alpha);
 				imagView.invalidate();
 			}
-			
+
 		};
-		
-		//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß³Ì£ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½alphaÖµ
-		thread = new Thread(new Runnable() {
-			
-			public void run() {
-				while(isShow) {
-					try {
+
+		// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß³Ì£ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½alphaÖµ
+		thread = new Thread(new Runnable()
+		{
+
+			public void run()
+			{
+				while (isShow)
+				{
+					try
+					{
 						Thread.sleep(100);
-						updateAlpha();						
-					}catch (InterruptedException  e) {
+						updateAlpha();
+					}
+					catch (InterruptedException e)
+					{
 						e.printStackTrace();
 					}
-				}				
+				}
 			}
-			
+
 		});
-				
-		loginButton.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
+
+		loginButton.setOnClickListener(new OnClickListener()
+		{
+
+			public void onClick(View v)
+			{
 				intent = new Intent();
 				intent.setClass(LoginActivity.this, ActivityMain.class);
-				//ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
 				thread.start();
-				
+
 				loginButton.setVisibility(v.INVISIBLE);
-				loginText.setVisibility(v.VISIBLE);				
+				loginText.setVisibility(v.VISIBLE);
 			}
 		});
 	}
-	
-	protected void updateAlpha() {
-		if((i_alpha-5) >= 0) {
-			i_alpha = i_alpha - 5;		
-			
-		}else {
+
+	protected void updateAlpha()
+	{
+		if ((i_alpha - 5) >= 0)
+		{
+			i_alpha = i_alpha - 5;
+
+		}
+		else
+		{
 			System.out.println("i_alpha" + i_alpha);
 			i_alpha = 0;
 			isShow = false;
-			startActivity(intent);	
+			startActivity(intent);
 		}
-		
-		mHandler.sendMessage(mHandler.obtainMessage()); 
+
+		mHandler.sendMessage(mHandler.obtainMessage());
 	}
 }
