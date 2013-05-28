@@ -33,7 +33,7 @@ public class LoginActivity extends Activity {
 		imagView = (ImageView)findViewById(R.id.login_rss);
 		imagView.setAlpha(i_alpha);
 				
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Ö®ï¿½ï¿½ï¿½ï¿½ï¿½
+		//Ö÷Ò³ÃæÏÔÊ¾
 		mHandler = new Handler() {
 			@Override
 			public void handleMessage(Message msg) {				
