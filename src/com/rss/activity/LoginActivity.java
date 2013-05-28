@@ -49,7 +49,6 @@ public class LoginActivity extends Activity
 
 		};
 
-		// ����һ���̣߳����ڸ���alphaֵ
 		thread = new Thread(new Runnable()
 		{
 
